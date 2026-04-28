@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ElevenLabs India — Voice AI GTM Strategy</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0a0a0a;
+    --white: #f5f2ec;
+    --accent: #e8552a;
+    --accent2: #f0a500;
+    --muted: #6b6560;
+    --card-bg: #111111;
+    --border: rgba(245,242,236,0.1);
+    --serif: 'DM Serif Display', Georgia, serif;
+    --sans: 'DM Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: var(--sans);
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.25rem 2.5rem;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo { font-family: var(--serif); font-size: 1.1rem; letter-spacing: 0.02em; }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { font-size: 0.8rem; color: var(--muted); text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--white); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 8rem 2.5rem 4rem;
+    position: relative; overflow: hidden;
+  }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(245,242,236,0.03) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(245,242,236,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-orb {
+    position: absolute; right: -10%; top: 10%;
+    width: 600px; height: 600px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(232,85,42,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-tag {
+    font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .hero-tag::before {
+    content: ''; display: block; width: 30px; height: 1px; background: var(--accent);
+  }
+  h1.hero-title {
+    font-family: var(--serif); font-size: clamp(2.8rem, 6vw, 5.5rem);
+    line-height: 1.05; max-width: 800px;
+    margin-bottom: 1.5rem;
+  }
+  h1.hero-title em { color: var(--accent); font-style: italic; }
+  .hero-sub {
+    font-size: 1.05rem; color: var(--muted); max-width: 520px;
+    margin-bottom: 3rem; line-height: 1.8;
+  }
+  .hero-cta {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--accent); color: var(--white);
+    padding: 0.9rem 2rem; border-radius: 2px;
+    font-size: 0.85rem; font-weight: 500; letter-spacing: 0.05em;
+    text-decoration: none; transition: background 0.2s, transform 0.2s;
+  }
+  .hero-cta:hover { background: #c94420; transform: translateY(-1px); }
+  .scroll-hint {
+    position: absolute; bottom: 2.5rem; left: 2.5rem;
+    font-size: 0.72rem; color: var(--muted); letter-spacing: 0.1em;
+    text-transform: uppercase; display: flex; align-items: center; gap: 10px;
+  }
+  .scroll-hint::after {
+    content: ''; display: block; width: 40px; height: 1px;
+    background: var(--muted);
+    animation: scroll-line 2s ease-in-out infinite;
+  }
+  @keyframes scroll-line { 0%,100%{opacity:0.3} 50%{opacity:1} }
+
+  /* SECTIONS */
+  section { padding: 6rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+  .section-tag {
+    font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 1rem;
+  }
+  h2.section-title {
+    font-family: var(--serif); font-size: clamp(1.8rem, 3.5vw, 3rem);
+    line-height: 1.15; margin-bottom: 1.5rem;
+  }
+  .divider {
+    width: 100%; height: 1px;
+    background: var(--border);
+    margin: 0;
+  }
+
+  /* INSIGHT STRIP */
+  .insight-strip {
+    background: var(--accent);
+    padding: 1.5rem 2.5rem;
+    display: flex; align-items: center; gap: 2rem;
+  }
+  .insight-strip p {
+    font-family: var(--serif); font-size: 1.2rem;
+    color: var(--white); max-width: 700px;
+    font-style: italic;
+  }
+  .insight-strip .big-q {
+    font-family: var(--serif); font-size: 5rem; line-height: 1;
+    color: rgba(255,255,255,0.3); flex-shrink: 0;
+  }
+
+  /* PERSONAS */
+  .personas { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); }
+  .persona {
+    background: var(--black); padding: 2rem;
+    transition: background 0.2s;
+    position: relative; overflow: hidden;
+  }
+  .persona:hover { background: #111; }
+  .persona::before {
+    content: ''; position: absolute; top: 0; left: 0;
+    width: 3px; height: 0; background: var(--accent);
+    transition: height 0.3s ease;
+  }
+  .persona:hover::before { height: 100%; }
+  .persona-num {
+    font-size: 0.72rem; color: var(--muted); letter-spacing: 0.1em;
+    margin-bottom: 0.75rem;
+  }
+  .persona h3 { font-family: var(--serif); font-size: 1.3rem; margin-bottom: 0.5rem; }
+  .persona p { font-size: 0.9rem; color: var(--muted); line-height: 1.7; }
+  .persona .tag {
+    display: inline-block; margin-top: 1rem;
+    font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 0.3rem 0.75rem; border: 1px solid var(--border);
+    color: var(--muted); border-radius: 2px;
+  }
+
+  /* CAMPAIGN */
+  .campaign-block {
+    border: 1px solid var(--border); border-radius: 2px;
+    padding: 3rem; position: relative; overflow: hidden;
+    margin-top: 3rem;
+  }
+  .campaign-block::after {
+    content: '"Sounds Like You"';
+    position: absolute; right: -2rem; top: 50%; transform: translateY(-50%) rotate(90deg);
+    font-family: var(--serif); font-size: 4rem; color: rgba(245,242,236,0.03);
+    white-space: nowrap; pointer-events: none;
+  }
+  .campaign-pillars { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5rem; margin-top: 2rem; }
+  .pillar { border-top: 2px solid var(--accent2); padding-top: 1rem; }
+  .pillar h4 { font-family: var(--serif); font-size: 1.1rem; margin-bottom: 0.4rem; }
+  .pillar p { font-size: 0.82rem; color: var(--muted); }
+
+  /* CHANNELS */
+  .channels { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem; }
+  .channel-card {
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-radius: 2px; padding: 2rem;
+  }
+  .channel-card h3 { font-family: var(--serif); font-size: 1.2rem; margin-bottom: 0.75rem; }
+  .channel-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.7; }
+
+  /* EVENT SECTION */
+  .event-block {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 2px; padding: 3rem;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
+    margin-top: 2rem;
+  }
+  .event-block h3 { font-family: var(--serif); font-size: 1.5rem; margin-bottom: 1rem; }
+  .event-block p { font-size: 0.88rem; color: var(--muted); line-height: 1.7; }
+  .event-stat { margin-top: 1.5rem; }
+  .event-stat span { display: block; font-family: var(--serif); font-size: 2.5rem; color: var(--accent); }
+  .event-stat small { font-size: 0.78rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; }
+
+  /* METRICS */
+  .metrics { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: var(--border); margin-top: 2rem; }
+  .metric {
+    background: var(--black); padding: 2rem 1.5rem;
+    transition: background 0.2s;
+  }
+  .metric:hover { background: #0f0f0f; }
+  .metric-label { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.75rem; }
+  .metric-val { font-family: var(--serif); font-size: 1.6rem; margin-bottom: 0.4rem; }
+  .metric-desc { font-size: 0.8rem; color: var(--muted); }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 3rem 2.5rem;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  footer p { font-size: 0.8rem; color: var(--muted); }
+  .footer-brand { font-family: var(--serif); font-size: 1rem; }
+  .footer-brand span { color: var(--accent); }
+
+  /* ANIMATE */
+  .fade-up {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  /* WAVE ANIMATION */
+  .wave-bar {
+    display: inline-flex; align-items: flex-end; gap: 3px;
+    height: 24px; margin-right: 10px;
+  }
+  .wave-bar span {
+    display: block; width: 3px; background: var(--accent);
+    border-radius: 2px;
+    animation: wave 1.2s ease-in-out infinite;
+  }
+  .wave-bar span:nth-child(1){height:8px;animation-delay:0s}
+  .wave-bar span:nth-child(2){height:16px;animation-delay:0.1s}
+  .wave-bar span:nth-child(3){height:24px;animation-delay:0.2s}
+  .wave-bar span:nth-child(4){height:14px;animation-delay:0.3s}
+  .wave-bar span:nth-child(5){height:6px;animation-delay:0.4s}
+  @keyframes wave {
+    0%,100%{transform:scaleY(0.4)}
+    50%{transform:scaleY(1)}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">ElevenLabs <span>×</span> India</div>
+  <ul class="nav-links">
+    <li><a href="#problem">Problem</a></li>
+    <li><a href="#segments">Segments</a></li>
+    <li><a href="#campaign">Campaign</a></li>
+    <li><a href="#channels">Channels</a></li>
+    <li><a href="#metrics">Metrics</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" style="max-width:100%;padding-top:8rem;">
+  <div class="hero-grid"></div>
+  <div class="hero-orb"></div>
+  <div class="hero-tag">Voice AI · India Go-To-Market · 2025</div>
+  <h1 class="hero-title">
+    What if your AI sounded like it <em>belonged</em> here?
+  </h1>
+  <p class="hero-sub">
+    India doesn't need another AI that speaks at people. It needs one that speaks <em>to</em> them — in their language, their tone, their world.
+  </p>
+  <a href="#problem" class="hero-cta">
+    <span class="wave-bar"><span></span><span></span><span></span><span></span><span></span></span>
+    Explore the strategy
+  </a>
+  <div class="scroll-hint">Scroll to explore</div>
+</section>
+
+<div class="divider"></div>
+
+<!-- INSIGHT STRIP -->
+<div id="problem" class="insight-strip">
+  <div class="big-q">"</div>
+  <p>Most AI voice tools sound correct — but not relatable. And in India, relatability is everything.</p>
+</div>
+
+<!-- MARKET -->
+<section class="fade-up">
+  <div class="section-tag">The opportunity</div>
+  <h2 class="section-title">A billion ears, waiting for a voice they trust.</h2>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:2.5rem;">
+    <div>
+      <div style="font-family:var(--serif);font-size:3.5rem;color:var(--accent);line-height:1;">20+</div>
+      <div style="font-size:0.8rem;color:var(--muted);margin-top:0.4rem;text-transform:uppercase;letter-spacing:0.08em;">Major languages · 1000+ dialects</div>
+    </div>
+    <div>
+      <div style="font-family:var(--serif);font-size:3.5rem;color:var(--accent2);line-height:1;">Tier 2</div>
+      <div style="font-size:0.8rem;color:var(--muted);margin-top:0.4rem;text-transform:uppercase;letter-spacing:0.08em;">Users prefer voice over text</div>
+    </div>
+    <div>
+      <div style="font-family:var(--serif);font-size:3.5rem;color:var(--white);line-height:1;">Trust</div>
+      <div style="font-size:0.8rem;color:var(--muted);margin-top:0.4rem;text-transform:uppercase;letter-spacing:0.08em;">The #1 barrier to AI voice adoption</div>
+    </div>
+  </div>
+  <p style="margin-top:2.5rem;color:var(--muted);max-width:600px;font-size:0.95rem;line-height:1.8;">
+    Voice adoption in India won't be driven by capability alone. The AI companies that win here will be the ones that understood people first — their hesitations, their languages, their lives.
+  </p>
+</section>
+
+<div class="divider"></div>
+
+<!-- PERSONAS -->
+<section id="segments" class="fade-up">
+  <div class="section-tag">Who we're building for</div>
+  <h2 class="section-title">Four people. Four problems. One voice platform.</h2>
+  <div class="personas" style="margin-top:2rem;">
+    <div class="persona">
+      <div class="persona-num">01 · B2B SaaS & Startups</div>
+      <h3>The startup founder losing users at onboarding</h3>
+      <p>Her support bot sounds robotic and foreign. Customers drop off — not because the product is bad, but because the voice feels wrong. She needs AI that sounds like someone her users trust.</p>
+      <span class="tag">Customer support automation</span>
+    </div>
+    <div class="persona">
+      <div class="persona-num">02 · EdTech</div>
+      <h3>The builder trying to reach students in Tier 2 towns</h3>
+      <p>His platform teaches brilliantly — but only in English. Students in Nagpur, Patna, Coimbatore learn better in their own language. Voice AI in Tamil or Odia isn't a feature; it's access.</p>
+      <span class="tag">Multilingual teaching assistants</span>
+    </div>
+    <div class="persona">
+      <div class="persona-num">03 · Fintech</div>
+      <h3>The team losing loan approvals on the call</h3>
+      <p>Explaining a financial product in Hindi or Marathi isn't optional — it's the difference between a signed contract and a confused customer who hangs up.</p>
+      <span class="tag">Regional language product explainers</span>
+    </div>
+    <div class="persona">
+      <div class="persona-num">04 · D2C Brands</div>
+      <h3>The brand that sounds like a billboard, not a friend</h3>
+      <p>She wants her customers to feel like the brand is talking to them personally — not broadcasting generic English at them. Voice AI that adapts to the buyer makes every message feel like it was made for one person.</p>
+      <span class="tag">Personalized voice campaigns</span>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CAMPAIGN -->
+<section id="campaign" class="fade-up">
+  <div class="section-tag">Campaign concept</div>
+  <h2 class="section-title">"Sounds Like You"</h2>
+  <p style="color:var(--muted);max-width:580px;font-size:0.95rem;line-height:1.8;">
+    Not a product demo. A feeling. We show real people — in real cities, real industries, real languages — hearing an AI voice that finally sounds like someone they know. No narration. No pitch. Just the before and after, and a question: <em>which one did you trust?</em>
+  </p>
+  <div class="campaign-block">
+    <div class="section-tag" style="margin-bottom:0.5rem;">The four dimensions of relatability</div>
+    <div class="campaign-pillars">
+      <div class="pillar">
+        <h4>Language</h4>
+        <p>Hindi, Tamil, Marathi, Bengali — voice AI that starts where the user lives</p>
+      </div>
+      <div class="pillar">
+        <h4>Tone</h4>
+        <p>Warm where it should be warm. Professional where it needs to be. Never just correct.</p>
+      </div>
+      <div class="pillar">
+        <h4>Context</h4>
+        <p>A loan explanation sounds different than a lesson. The voice should know the difference.</p>
+      </div>
+      <div class="pillar">
+        <h4>Intent</h4>
+        <p>Trust isn't built by information — it's built by how the information arrives.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CHANNELS -->
+<section id="channels" class="fade-up">
+  <div class="section-tag">How we show up</div>
+  <h2 class="section-title">Content that earns attention, not just impressions.</h2>
+  <div class="channels">
+    <div class="channel-card">
+      <h3>LinkedIn (B2B)</h3>
+      <p>Real startup stories — not press releases. Actual conversations about what changed when their customer finally heard a voice that felt right. Case studies written like human experiences, not ROI decks.</p>
+    </div>
+    <div class="channel-card">
+      <h3>Short-form video</h3>
+      <p>Before vs after voice comparisons. Regional demos. No voiceover needed — the contrast speaks for itself. Content designed to stop someone mid-scroll and make them feel the difference.</p>
+    </div>
+    <div class="channel-card">
+      <h3>India landing page</h3>
+      <p>Not a translated version of the global site. A page that starts with "Namaste" and means it — with use cases, industries, and voices rooted in the Indian market from the first word.</p>
+    </div>
+    <div class="channel-card">
+      <h3>Community seeding</h3>
+      <p>SaaSBOOMi. iSPIRT. NASSCOM. Razorpay Rize. These aren't just audiences — they're trust networks. Being recommended inside these communities is worth more than any ad placement.</p>
+    </div>
+  </div>
+
+  <!-- EVENT -->
+  <div class="event-block">
+    <div>
+      <div class="section-tag">Flagship event</div>
+      <h3>"Voice AI for India — Beyond Translation"</h3>
+      <p>A closed-door roundtable for CMOs, Product Heads, and CX leaders. We don't pitch. We play two voices — one generic, one built for their user. The room decides which one they trust. That's the whole event.</p>
+      <p style="margin-top:1rem;">Curated guest list. Partner-distributed. Post-event follow-up with live demos and custom use cases for every attendee's industry.</p>
+    </div>
+    <div>
+      <div class="section-tag">Event details</div>
+      <div class="event-stat">
+        <span>50–100</span>
+        <small>Curated attendees</small>
+      </div>
+      <div class="event-stat" style="margin-top:1.5rem;">
+        <span>Live</span>
+        <small>Voice demos in 5+ languages</small>
+      </div>
+      <div class="event-stat" style="margin-top:1.5rem;">
+        <span>0 decks</span>
+        <small>Show, don't tell</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- METRICS -->
+<section id="metrics" class="fade-up">
+  <div class="section-tag">What success looks like</div>
+  <h2 class="section-title">Not vanity metrics. Evidence of trust.</h2>
+  <p style="color:var(--muted);max-width:560px;font-size:0.95rem;line-height:1.8;margin-bottom:0;">
+    If trust is the product, then the metrics that matter are the ones that show people chose to take the next step — not just that they saw us.
+  </p>
+  <div class="metrics">
+    <div class="metric">
+      <div class="metric-label">Lead generation</div>
+      <div class="metric-val">Enterprise contacts</div>
+      <div class="metric-desc">Decision-makers who raised their hand, not just opened an email</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">Product intent</div>
+      <div class="metric-val">Demo requests</div>
+      <div class="metric-desc">The clearest signal someone wants to hear more</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">Content</div>
+      <div class="metric-val">Engagement rate</div>
+      <div class="metric-desc">Did localized content make people stop, share, and comment?</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">Event</div>
+      <div class="metric-val">Conversion rate</div>
+      <div class="metric-desc">Attendees who moved to a product conversation after the roundtable</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CLOSING -->
+<div class="insight-strip" style="background:var(--card-bg);border-top:1px solid var(--border);">
+  <div class="big-q" style="color:rgba(245,242,236,0.08);">"</div>
+  <p style="font-size:1.1rem;">Voice adoption in India will not be driven by capability alone — but by relatability and trust. That's not a marketing insight. It's a product truth.</p>
+</div>
+
+<footer>
+  <div>
+    <div class="footer-brand">ElevenLabs <span>×</span> India GTM</div>
+    <p style="margin-top:0.4rem;">A marketing strategy concept · Built as part of internship application · 2025</p>
+  </div>
+  <p>Made with curiosity & care</p>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
